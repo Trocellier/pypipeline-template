@@ -1,0 +1,17 @@
+# config.yml ----------------------------------------------------------------- #
+# Author: Louis Trocellier
+# Description: Paths and application metadata.
+
+# Paths ---------------------------------------------------------------------- #
+default:
+  paths:
+    functions: function
+    app: app
+    www: www
+    data: data
+  app:
+    title: "Dashboard Template"
+    version: "0.1.0"
+    copyright: "© LT Data Analysis"
+    author: "Louis Trocellier"
+    skin: "blue"

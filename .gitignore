@@ -1,0 +1,19 @@
+# .gitignore ----------------------------------------------------------------- #
+# Author: Louis Trocellier
+# Description: Git ignore rules for the project.
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+.Renviron
+rsconnect/
+.DS_Store
+Thumbs.db
+
+# renv: Version the lockfile and activation, not the local cache
+renv/library/
+renv/python/
+renv/sandbox/
+renv/staging/
