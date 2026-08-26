@@ -23,6 +23,11 @@ renv/sandbox/
 renv/staging/
 
 # Generated Pipeline Data & Logs
-logs/
-data/
-outputs/
+logs/*
+!logs/.gitkeep
+
+data/*
+!data/.gitkeep
+
+outputs/*
+!outputs/.gitkeep
