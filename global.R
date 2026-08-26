@@ -1,6 +1,6 @@
 # global.R ------------------------------------------------------------------- #
 # Author: Louis Trocellier
-# Description: Packages, config, functions, and script discovery.
+# Description: Load packages, project configuration, logging, and helper functions.
 
 # Packages ------------------------------------------------------------------- #
 library(config)
@@ -11,6 +11,19 @@ library(purrr)
 # Configuration ------------------------------------------------------------- #
 cfg <- config::get()
 env_app <- environment()
+
+# Logging Setup ------------------------------------------------------------- #
+# Set log threshold dynamically based on configuration (INFO, WARN, etc.)
+log_threshold(get(cfg$logging$level, envir = asNamespace("logger")))
+
+# Configure file logging if enabled
+if (isTRUE(cfg$logging$log_to_file)) {
+  log_dir <- cfg$paths$logs %||% "logs"
+  if (!dir.exists(log_dir)) dir.create(log_dir, recursive = TRUE)
+  
+  # appender_tee logs to both console and file simultaneously
+  log_appender(appender_tee(file.path(log_dir, "pipeline.log")))
+}
 
 # Sourcing Functions -------------------------------------------------------- #
 source_dossier <- function(chemin, envir = env_app, pattern = "\\.[Rr]$") {
