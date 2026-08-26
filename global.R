@@ -3,12 +3,23 @@
 # Description: Load packages, project configuration, logging, and helper functions.
 
 # Packages ------------------------------------------------------------------- #
+library(dotenv)
 library(config)
 library(logger)
 library(dplyr)
 library(purrr)
 
-# Configuration ------------------------------------------------------------- #
+# Environment & Configuration ----------------------------------------------- #
+# Charge les variables du fichier .env s'il existe à la racine
+if (file.exists(".env")) {
+  dotenv::load_dot_env(".env")
+}
+
+# Lie APP_ENV du .env à R_CONFIG_ACTIVE pour le package config
+if (Sys.getenv("APP_ENV") != "") {
+  Sys.setenv(R_CONFIG_ACTIVE = Sys.getenv("APP_ENV"))
+}
+
 cfg <- config::get()
 env_app <- environment()
 
