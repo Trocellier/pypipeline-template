@@ -1,19 +1,18 @@
 # global.R ------------------------------------------------------------------- #
 # Author: Louis Trocellier
-# Description: Packages, config, and function sourcing.
+# Description: Packages, config, functions, and script discovery.
 
 # Packages ------------------------------------------------------------------- #
-library(shiny)
-library(shinydashboard)
+library(config)
+library(logger)
 library(dplyr)
-library(ggplot2)
-library(DT)
+library(purrr)
 
 # Configuration ------------------------------------------------------------- #
 cfg <- config::get()
 env_app <- environment()
 
-# Sourcing ------------------------------------------------------------------- #
+# Sourcing Functions -------------------------------------------------------- #
 source_dossier <- function(chemin, envir = env_app, pattern = "\\.[Rr]$") {
   fichiers <- list.files(chemin, pattern = pattern, full.names = TRUE)
   invisible(lapply(fichiers, function(fichier) {
@@ -22,3 +21,15 @@ source_dossier <- function(chemin, envir = env_app, pattern = "\\.[Rr]$") {
 }
 
 source_dossier(cfg$paths$functions)
+
+# Script Discovery ---------------------------------------------------------- #
+get_pipeline_scripts <- function() {
+  scripts <- list.files(
+    cfg$paths$scripts, 
+    pattern = "^[0-9]+.*\\.[Rr]$", 
+    full.names = TRUE
+  )
+  scripts[order(as.integer(sub("^([0-9]+).*", "\\1", basename(scripts))))]
+}
+
+pipeline_scripts <- get_pipeline_scripts()
