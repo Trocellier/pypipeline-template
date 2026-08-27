@@ -12,10 +12,10 @@ export_results_settings <- function() {
 
 #' Prepare final datasets or summary statistics
 export_results_execution <- function(settings) {
-  log_info("Reading processed data from: {settings$input_file}")
+  log_debug("Reading processed data from: {settings$input_file}")
   processed_data <- readRDS(settings$input_file)
   
-  log_info("Generating summary metrics")
+  log_debug("Generating summary metrics")
   summary_df <- processed_data %>%
     dplyr::group_by(status) %>%
     dplyr::summarise(
@@ -32,5 +32,5 @@ export_results_exports <- function(results) {
   output_path <- file.path(cfg$paths$outputs, "final_summary.csv")
   
   readr::write_csv(results$summary, file = output_path)
-  log_info("Final summary CSV written to: {output_path}")
+  log_debug("Final summary CSV written to: {output_path}")
 }

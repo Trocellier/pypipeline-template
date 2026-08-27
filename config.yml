@@ -14,10 +14,10 @@ default:
     version: "0.1.0"
     author: "Louis Trocellier"
   logging:
-    level: "INFO"
+    level: "DEBUG"
     log_to_file: true
 
 production:
   logging:
-    level: "WARN"
+    level: "INFO"
     log_to_file: true

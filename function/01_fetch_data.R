@@ -12,7 +12,7 @@ fetch_data_settings <- function() {
 
 #' Execute data retrieval
 fetch_data_execution <- function(settings) {
-  log_info("Fetching records from source: {settings$data_source}")
+  log_debug("Fetching records from source: {settings$data_source}")
   
   # Placeholder for actual data retrieval (DB query, API call, CSV read)
   data <- data.frame(
@@ -28,5 +28,5 @@ fetch_data_execution <- function(settings) {
 fetch_data_exports <- function(data) {
   output_path <- file.path(cfg$paths$data, "raw_data.rds")
   saveRDS(data, file = output_path)
-  log_info("Raw data saved to: {output_path}")
+  log_debug("Raw data saved to: {output_path}")
 }

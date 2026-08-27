@@ -12,10 +12,10 @@ process_data_settings <- function() {
 
 #' Execute data processing and transformations
 process_data_execution <- function(settings) {
-  log_info("Reading raw data from: {settings$input_file}")
+  log_debug("Reading raw data from: {settings$input_file}")
   raw_data <- readRDS(settings$input_file)
   
-  log_info("Applying transformations and filtering with threshold: {settings$threshold}")
+  log_debug("Applying transformations and filtering with threshold: {settings$threshold}")
   processed <- raw_data %>%
     dplyr::mutate(status = dplyr::if_else(value >= settings$threshold, "HIGH", "LOW")) %>%
     dplyr::arrange(dplyr::desc(value))
@@ -27,5 +27,5 @@ process_data_execution <- function(settings) {
 process_data_exports <- function(data) {
   output_path <- file.path(cfg$paths$data, "processed_data.rds")
   saveRDS(data, file = output_path)
-  log_info("Processed data saved to: {output_path}")
+  log_debug("Processed data saved to: {output_path}")
 }
