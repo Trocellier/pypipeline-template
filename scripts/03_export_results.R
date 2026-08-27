@@ -2,9 +2,6 @@
 # Author: Louis Trocellier
 # Description: Script for step 03 - Exporting final results.
 
-# Source associated functions ----------------------------------------------- #
-source(file.path(cfg$paths$functions, "03_export_results.R"), local = TRUE)
-
 # Execution ----------------------------------------------------------------- #
 log_info("Starting step 03: Export results")
 

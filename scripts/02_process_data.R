@@ -2,9 +2,6 @@
 # Author: Louis Trocellier
 # Description: Script for step 02 - Processing data.
 
-# Source associated functions ----------------------------------------------- #
-source(file.path(cfg$paths$functions, "02_process_data.R"), local = TRUE)
-
 # Execution ----------------------------------------------------------------- #
 log_info("Starting step 02: Process data")
 

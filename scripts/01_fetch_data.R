@@ -2,9 +2,6 @@
 # Author: Louis Trocellier
 # Description: Script for step 01 - Fetching data.
 
-# Source associated functions ----------------------------------------------- #
-source(file.path(cfg$paths$functions, "01_fetch_data.R"), local = TRUE)
-
 # Execution ----------------------------------------------------------------- #
 log_info("Starting step 01: Fetch data")
 
