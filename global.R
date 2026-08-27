@@ -10,12 +10,12 @@ library(dplyr)
 library(purrr)
 
 # Environment & Configuration ----------------------------------------------- #
-# Charge les variables du fichier .env s'il existe à la racine
+# Load environment variables from .env if present
 if (file.exists(".env")) {
   dotenv::load_dot_env(".env")
 }
 
-# Lie APP_ENV du .env à R_CONFIG_ACTIVE pour le package config
+# Map APP_ENV from .env to R_CONFIG_ACTIVE for the config package
 if (Sys.getenv("APP_ENV") != "") {
   Sys.setenv(R_CONFIG_ACTIVE = Sys.getenv("APP_ENV"))
 }
@@ -25,7 +25,7 @@ env_app <- environment()
 
 # Logging Setup ------------------------------------------------------------- #
 # Set log threshold dynamically based on configuration (INFO, WARN, etc.)
-log_threshold(get(cfg$logging$level, envir = asNamespace("logger")))
+log_threshold(cfg$logging$level)
 
 # Configure file logging if enabled
 if (isTRUE(cfg$logging$log_to_file)) {
