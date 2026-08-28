@@ -1,0 +1,34 @@
+# .dockerignore -------------------------------------------------------------- #
+# Author: Louis Trocellier
+# Description: Files and directories excluded from the Docker build context.
+
+# RStudio / OS / Session files
+.Rproj.user
+.Rhistory
+.RData
+.RuserData
+*.Rproj
+.DS_Store
+Thumbs.db
+.git
+.gitignore
+
+# Environment Variables & Credentials
+.env
+.Renviron
+
+# Generated Data & Logs (kept on host via volumes)
+logs/*
+!logs/.gitkeep
+
+data/*
+!data/.gitkeep
+
+outputs/*
+!outputs/.gitkeep
+
+# renv local cache (rebuilt inside the container via renv::restore)
+renv/library/
+renv/python/
+renv/sandbox/
+renv/staging/

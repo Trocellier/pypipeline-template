@@ -1,0 +1,17 @@
+# docker-compose.yml --------------------------------------------------------- #
+# Author: Louis Trocellier
+# Description: Service orchestration for running the production R pipeline.
+
+services:
+  pipeline:
+    build: .
+    image: rpipeline-template:latest
+    environment:
+      - APP_ENV=production
+    volumes:
+      # Persistent storage mapped to host machine
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./logs:/app/logs
+      # Environment credentials
+      - ./.env:/app/.env

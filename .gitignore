@@ -1,3 +1,4 @@
+Plaintext
 # .gitignore ----------------------------------------------------------------- #
 # Author: Louis Trocellier
 # Description: Git ignore rules for the project.
@@ -6,7 +7,7 @@
 .Rproj.user
 .Rhistory
 .RData
-.Ruserdata
+.RuserData
 *.Rproj
 .DS_Store
 Thumbs.db
@@ -31,3 +32,6 @@ data/*
 
 outputs/*
 !outputs/.gitkeep
+
+# Docker temporary artifacts
+*.tar
