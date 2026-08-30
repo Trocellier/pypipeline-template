@@ -5,8 +5,8 @@
 #' Define parameters for exporting results
 export_results_settings <- function() {
   list(
-    input_file = file.path(cfg$paths$data, "processed_data.rds"),
-    output_csv = file.path(cfg$paths$outputs, "final_summary.csv")
+    input_file = file.path(cfg$paths$data, "02_processed_data.rds"),
+    output_csv = file.path(cfg$paths$outputs, "03_final_summary.csv")
   )
 }
 
@@ -29,7 +29,7 @@ export_results_execution <- function(settings) {
 
 #' Save final files to outputs folder
 export_results_exports <- function(results) {
-  output_path <- file.path(cfg$paths$outputs, "final_summary.csv")
+  output_path <- file.path(cfg$paths$outputs, "03_final_summary.csv")
   
   readr::write_csv(results$summary, file = output_path)
   log_debug("Final summary CSV written to: {output_path}")

@@ -5,7 +5,7 @@
 #' Define parameters for processing data
 process_data_settings <- function() {
   list(
-    input_file = file.path(cfg$paths$data, "raw_data.rds"),
+    input_file = file.path(cfg$paths$data, "01_raw_data.rds"),
     threshold = 50
   )
 }
@@ -25,7 +25,7 @@ process_data_execution <- function(settings) {
 
 #' Save processed data to intermediate storage
 process_data_exports <- function(data) {
-  output_path <- file.path(cfg$paths$data, "processed_data.rds")
+  output_path <- file.path(cfg$paths$data, "02_processed_data.rds")
   saveRDS(data, file = output_path)
   log_debug("Processed data saved to: {output_path}")
 }

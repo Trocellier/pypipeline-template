@@ -26,7 +26,7 @@ fetch_data_execution <- function(settings) {
 
 #' Save fetched data to intermediate storage
 fetch_data_exports <- function(data) {
-  output_path <- file.path(cfg$paths$data, "raw_data.rds")
+  output_path <- file.path(cfg$paths$data, "01_raw_data.rds")
   saveRDS(data, file = output_path)
   log_debug("Raw data saved to: {output_path}")
 }
