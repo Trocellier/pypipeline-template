@@ -2,22 +2,18 @@
 # Author: Louis Trocellier
 # Description: Step 02 - Processing data.
 
-import logging
-from importlib import util
+from src.functions.f02_process_data import (
+    process_load_raw_data,
+    process_data,
+    process_export_data
+)
 
-logger = logging.getLogger(__name__)
-logger.info("Starting step 02: Process data")
+if __name__ == "__main__":
+    # 1. Load raw data
+    raw_data = process_load_raw_data()
 
-try:
-    # Dynamic import for file starting with digit
-    spec = util.spec_from_file_location("step02", "src/functions/02_process_data.py")
-    step02 = util.module_from_spec(spec)
-    spec.loader.exec_module(step02)
-    
-    raw_data = step02.load_raw_data()
-    processed_data = step02.process_data(raw_data)
-    step02.export_processed_data(processed_data)
-    logger.info("Step 02 completed successfully")
-except Exception as e:
-    logger.error(f"Step 02 failed: {e}")
-    raise
+    # 2. Process data
+    processed_data = process_data(raw_data)
+
+    # 3. Export processed data
+    process_export_data(processed_data)

@@ -2,22 +2,18 @@
 # Author: Louis Trocellier
 # Description: Step 03 - Exporting results.
 
-import logging
+from src.functions.f03_export_results import (
+    export_load_processed_data,
+    export_generate_summary,
+    export_results
+)
 
-logger = logging.getLogger(__name__)
-logger.info("Starting step 03: Export results")
+if __name__ == "__main__":
+    # 1. Load processed data
+    processed_data = export_load_processed_data()
 
-try:
-    from src.functions.export_results import (
-        load_processed_data,
-        generate_summary,
-        export_results
-    )
-    
-    processed_data = load_processed_data()
-    summary = generate_summary(processed_data)
+    # 2. Generate summary statistics
+    summary = export_generate_summary(processed_data)
+
+    # 3. Export final results
     export_results(summary)
-    logger.info("Step 03 completed successfully")
-except Exception as e:
-    logger.error(f"Step 03 failed: {e}")
-    raise

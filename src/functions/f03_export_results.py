@@ -5,24 +5,20 @@
 import logging
 import pandas as pd
 from pathlib import Path
+from global import DATA_DIR, OUTPUTS_DIR
 
 # Get logger for this module
 logger = logging.getLogger(__name__)
 
-# These will be injected by main.py
-config = None
-DATA_DIR = None
-OUTPUTS_DIR = None
-
 # Execution ------------------------------------------------------------ #
-def load_processed_data():
+def export_load_processed_data():
     """Load processed data from storage."""
-    input_path = DATA_DIR / "02_processed_data.csv"
+    input_path = DATA_DIR / "02_processed_data.parquet"
     
     logger.debug(f"Loading processed data from {input_path}")
-    return pd.read_csv(input_path)
+    return pd.read_parquet(input_path)
 
-def generate_summary(data):
+def export_generate_summary(data):
     """Generate summary statistics."""
     logger.debug("Generating summary statistics")
     
@@ -46,15 +42,3 @@ def export_results(summary):
     logger.debug(f"Exporting results to {output_path}")
     summary.to_csv(output_path, index=False)
     logger.info(f"Results exported to {output_path}")
-
-def execute():
-    """Execute step 03."""
-    logger.info("Starting step 03: Export results")
-    try:
-        processed_data = load_processed_data()
-        summary = generate_summary(processed_data)
-        export_results(summary)
-        logger.info("Step 03 completed successfully")
-    except Exception as e:
-        logger.error(f"Step 03 failed: {e}")
-        raise
