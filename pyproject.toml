@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pypipeline-template"
+version = "0.1.0"
+description = "Production-ready Python data pipeline template"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Louis Trocellier", email = "louis@example.com"}
+]
+keywords = ["pipeline", "data", "etl", "production"]
+
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0",
+    "loguru>=0.7.2",
+    "pandas>=2.1.4",
+    "numpy>=1.26.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.3",
+    "pytest-cov>=4.1.0",
+    "black>=23.12.0",
+    "flake8>=6.1.0",
+    "mypy>=1.7.0",
+    "isort>=5.13.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/pypipeline-template"
+Repository = "https://github.com/yourusername/pypipeline-template.git"
+
+[tool.setuptools]
+py-modules = ["global"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "scripts*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip_glob = ["*/migrations/*"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "--strict-markers --tb=short"
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+]
