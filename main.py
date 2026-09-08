@@ -1,46 +1,19 @@
-# main.py ------------------------------------------------------------------ #
+# main.py -------------------------------------------------------------- #
 # Author: Louis Trocellier
-# Description: Production pipeline orchestrator.
+# Description: Sequential execution of pipeline scripts with error handling.
 
-from loguru import logger
+import runpy
 import sys
-import traceback
-from importlib import util
-from global import pipeline_scripts, SCRIPTS_DIR
+from global import logger, pipeline_scripts
 
-# Main Execution Pipeline -------------------------------------------------- #
-def main():
-    """Execute the production pipeline."""
-    logger.info("\n")
-    logger.warning("=== Production Pipeline Started ===")
-    
+logger.info("Starting pipeline execution...")
+
+for script in pipeline_scripts:
+    logger.info(f"Running script: {script.name}")
     try:
-        for script_path in pipeline_scripts:
-            script_name = script_path.stem
-            logger.info(f"Running step: {script_name}")
-            
-            # Import and execute the script
-            try:
-                spec = util.spec_from_file_location(script_name, script_path)
-                if spec and spec.loader:
-                    module = util.module_from_spec(spec)
-                    sys.modules[script_name] = module
-                    spec.loader.exec_module(module)
-                    
-                    logger.info(f"Completed step: {script_name}")
-            except Exception as e:
-                logger.error(f"Failed to execute {script_name}: {e}")
-                traceback.print_exc()
-                raise
-        
-        logger.warning("=== Production Pipeline Completed Successfully ===")
-        
+        runpy.run_path(str(script), run_name="__main__")
     except Exception as e:
-        logger.error(f"Pipeline failed during execution: {str(e)}")
-        logger.error(traceback.format_exc())
+        logger.error(f"Error in {script.name}: {e}", exc_info=True)
         sys.exit(1)
 
-
-# Launch ------------------------------------------------------------------- #
-if __name__ == "__main__":
-    main()
+logger.info("Pipeline executed successfully!")

@@ -4,7 +4,7 @@
 
 default:
   paths:
-    functions: "function"
+    functions: "src/functions"
     scripts: "scripts"
     data: "data"
     outputs: "outputs"

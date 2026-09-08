@@ -3,9 +3,12 @@
 # Description: Shared functions used across all scripts.
 
 import sys
+import logging
 from pathlib import Path
 from importlib import util
-from loguru import logger
+
+# Get logger for this module
+logger = logging.getLogger(__name__)
 
 # Utilities ---------------------------------------------------------------- #
 def source_directory(directory: Path, pattern: str = "*.py") -> None:
@@ -22,7 +25,8 @@ def source_directory(directory: Path, pattern: str = "*.py") -> None:
         return
     
     for file_path in sorted(directory.glob(pattern)):
-        if file_path.name.startswith("__"):
+        # Skip __init__ and numbered script files
+        if file_path.name.startswith("__") or file_path.name[0].isdigit():
             continue
         
         try:
