@@ -5,7 +5,7 @@
 import logging
 import pandas as pd
 from pathlib import Path
-from global import DATA_DIR
+from settings import DATA_DIR
 
 # Get logger for this module
 logger = logging.getLogger(__name__)
@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 
 def fetch_data_settings():
     """Load parameters/settings for data fetching."""
+    logger.debug("Loading fetch data settings...")
     return {
         "data_source": "raw_sample",
         "max_records": 1000

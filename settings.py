@@ -1,4 +1,4 @@
-# global.py ------------------------------------------------------------ #
+# settings.py ------------------------------------------------------------ #
 # Author: Louis Trocellier
 # Description: Load packages, project configuration, logging, and helper functions.
 
@@ -48,6 +48,13 @@ logging.basicConfig(
 logger = logging.getLogger("pipeline")
 
 # Script Discovery ---------------------------------------------------------- #
-pipeline_scripts = sorted(SCRIPTS_DIR.glob("[0-9]*_*.py"))
+# Sort scripts by their numeric prefix to ensure correct execution order
+pipeline_scripts = sorted(SCRIPTS_DIR.glob("[0-9]*_*.py")) 
 
+# pipeline execution header for better log readability
+logger.info("=" * 60) 
+logger.info("NEW PIPELINE EXECUTION".center(60)) 
+logger.info("=" * 60)
+
+# log the environment and the discovered scripts
 logger.info(f"Environment: {APP_ENV} | Found scripts: {[s.name for s in pipeline_scripts]}")

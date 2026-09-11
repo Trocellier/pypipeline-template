@@ -31,7 +31,7 @@ ENV APP_ENV=production
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "from global import config; print('OK')" || exit 1
+    CMD python -c "from settings import config; print('OK')" || exit 1
 
 # Run the pipeline
 CMD ["python", "main.py"]

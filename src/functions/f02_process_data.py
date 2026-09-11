@@ -5,7 +5,7 @@
 import logging
 import pandas as pd
 from pathlib import Path
-from global import DATA_DIR
+from settings import DATA_DIR
 
 # Get logger for this module
 logger = logging.getLogger(__name__)

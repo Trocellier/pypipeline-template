@@ -2,12 +2,13 @@
 # Author: Louis Trocellier
 # Description: Sequential execution of pipeline scripts with error handling.
 
-import runpy
-import sys
-from global import logger, pipeline_scripts
+import runpy # runpy is used to run Python scripts dynamically
+import sys   # sys is used for system-specific parameters and functions
+from settings import logger, pipeline_scripts
 
 logger.info("Starting pipeline execution...")
 
+# Sequentially execute each script in the pipeline
 for script in pipeline_scripts:
     logger.info(f"Running script: {script.name}")
     try:
