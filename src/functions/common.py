@@ -3,12 +3,9 @@
 # Description: Shared functions used across all scripts.
 
 import sys
-import logging
 from pathlib import Path
 from importlib import util
-
-# Get logger for this module
-logger = logging.getLogger(__name__)
+from settings import logger
 
 # Utilities ---------------------------------------------------------------- #
 def source_directory(directory: Path, pattern: str = "*.py") -> None:
