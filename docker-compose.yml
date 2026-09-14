@@ -1,10 +1,8 @@
-version: '3.8'
-
 services:
   pipeline:
     build:
       context: .
-      dockerfile: Dockerfile.python
+      dockerfile: Dockerfile
     container_name: pypipeline
     environment:
       - APP_ENV=production
@@ -15,7 +13,7 @@ services:
       - ./logs:/app/logs
       - ./config.yml:/app/config.yml:ro
       - ./.env:/app/.env:ro
-    restart: on-failure
+    restart: on-failure:5
     logging:
       driver: "json-file"
       options:
@@ -24,9 +22,9 @@ services:
     networks:
       - pipeline_network
 
-  # Optional: Database service (if needed)
+  # Service base de données (décommenter si nécessaire)
   # db:
-  #   image: postgres:15-alpine
+  #   image: postgres:16-alpine
   #   container_name: pipeline_db
   #   environment:
   #     - POSTGRES_DB=pipeline_db
