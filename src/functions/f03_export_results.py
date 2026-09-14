@@ -3,7 +3,7 @@
 # Description: Script for step 03 - Exporting results.
 
 import pandas as pd
-from settings import DATA_DIR, logger
+from settings import DATA_DIR, OUTPUTS_DIR, logger
 
 # Functions ----------------------------------------------------------------- #
 def export_load_processed_data():

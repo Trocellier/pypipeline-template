@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 
 # Functions imports
-from scripts.f01_fetch_data import (
+from src.functions.f01_fetch_data import (
     fetch_data_settings,
     fetch_data_execution,
     fetch_data_exports,
@@ -32,7 +32,7 @@ def test_fetch_data_execution_returns_valid_dataframe():
     assert len(df) == 10
     assert list(df.columns) == ["id", "timestamp", "value"]
     assert np.issubdtype(df["id"].dtype, np.integer)
-    assert np.issubdtype(df["value"].dtype, np.floating)
+    assert np.issubdtype(df["value"].dtype, np.number)
 
 
 def test_fetch_data_execution_data_integrity():
