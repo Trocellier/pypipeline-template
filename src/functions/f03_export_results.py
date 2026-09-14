@@ -1,16 +1,11 @@
-# scripts/03_export_results.py -------------------------------------------- #
+# src/functions/f03_export_results.py --------------------------------------- #
 # Author: Louis Trocellier
 # Description: Script for step 03 - Exporting results.
 
-import logging
 import pandas as pd
-from pathlib import Path
-from settings import DATA_DIR, OUTPUTS_DIR
+from settings import DATA_DIR, logger
 
-# Get logger for this module
-logger = logging.getLogger(__name__)
-
-# Execution ------------------------------------------------------------ #
+# Functions ----------------------------------------------------------------- #
 def export_load_processed_data():
     """Load processed data from storage."""
     input_path = DATA_DIR / "02_processed_data.parquet"

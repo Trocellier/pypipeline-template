@@ -1,16 +1,11 @@
-# 01_fetch_data.py ------------------------------------------------------ #
+# src/functions/f01_fetch_data.py ------------------------------------------- #
 # Author: Louis Trocellier
 # Description: Script for step 01 - Fetching data.
 
-import logging
 import pandas as pd
-from pathlib import Path
-from settings import DATA_DIR
+from settings import DATA_DIR, logger
 
-# Get logger for this module
-logger = logging.getLogger(__name__)
-
-
+# Functions ----------------------------------------------------------------- #
 def fetch_data_settings():
     """Load parameters/settings for data fetching."""
     logger.debug("Loading fetch data settings...")

@@ -3,24 +3,17 @@
 # Description: Pytest configuration and shared fixtures.
 
 import pytest
-from pathlib import Path
-import sys
-
-# Add project root to path
-PROJECT_ROOT = Path(__file__).parent.parent.resolve()
-sys.path.insert(0, str(PROJECT_ROOT))
+from settings import DATA_DIR, config
 
 
 @pytest.fixture
 def temp_data_dir(tmp_path):
-    """Create a temporary data directory for tests."""
-    return tmp_path / "data"
-
+    """Crée un dossier de données temporaire pour isoler les tests."""
+    data_dir = tmp_path / "data"
+    data_dir.mkdir(exist_ok=True)
+    return data_dir
 
 @pytest.fixture
 def sample_settings():
-    """Provide sample settings for fetch_data tests."""
-    return {
-        "data_source": "raw_sample",
-        "max_records": 1000
-    }
+    """Injecte directement la configuration chargée depuis config.yml."""
+    return config
