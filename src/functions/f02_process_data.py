@@ -1,16 +1,11 @@
-# scripts/02_process_data.py ---------------------------------------------- #
+# scripts/f02_process_data.py ---------------------------------------------- #
 # Author: Louis Trocellier
 # Description: Script for step 02 - Processing data.
 
-import logging
 import pandas as pd
-from pathlib import Path
-from settings import DATA_DIR
+from settings import DATA_DIR, logger
 
-# Get logger for this module
-logger = logging.getLogger(__name__)
-
-# Execution ------------------------------------------------------------ #
+# Functions ----------------------------------------------------------------- #
 def process_load_raw_data():
     """Load raw data from storage."""
     input_path = DATA_DIR / "01_raw_data.parquet"
