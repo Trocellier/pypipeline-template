@@ -1,4 +1,7 @@
-# Python-based Dockerfile for production pipeline
+# Dockerfile ---------------------------------------------------------------- #
+# Author: Louis Trocellier
+# Description: Sequential execution of pipeline scripts with error handling.
+
 
 FROM python:3.13-slim
 
