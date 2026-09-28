@@ -22,7 +22,7 @@ services:
     networks:
       - pipeline_network
 
-  # Service base de données (décommenter si nécessaire)
+  # db service is commented out. Uncomment and configure if you need a PostgreSQL database.
   # db:
   #   image: postgres:16-alpine
   #   container_name: pipeline_db
