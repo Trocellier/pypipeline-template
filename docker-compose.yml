@@ -4,15 +4,17 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: pypipeline
+    env_file:
+      - .env
     environment:
-      - APP_ENV=production
       - PYTHONUNBUFFERED=1
     volumes:
       - ./data:/app/data
       - ./outputs:/app/outputs
       - ./logs:/app/logs
       - ./config.yml:/app/config.yml:ro
-      - ./.env:/app/.env:ro
+    depends_on:
+      - db
     restart: on-failure:5
     logging:
       driver: "json-file"

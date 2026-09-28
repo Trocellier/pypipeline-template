@@ -2,19 +2,39 @@
 # Author: Louis Trocellier
 # Description: Files and directories excluded from the Docker build context.
 
-# RStudio / OS / Session files
+# Version Control & IDE / OS files
+.git
+.gitignore
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# R / RStudio Session files
 .Rproj.user
 .Rhistory
 .RData
 .RuserData
 *.Rproj
-.DS_Store
-Thumbs.db
-.git
-.gitignore
+renv/library/
+renv/python/
+renv/sandbox/
+renv/staging/
+
+# Python Virtual Environments & Caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
 
 # Environment Variables & Credentials
 .env
+.env.*
+!.env.example
 .Renviron
 
 # Generated Data & Logs (kept on host via volumes)
@@ -26,9 +46,3 @@ data/*
 
 outputs/*
 !outputs/.gitkeep
-
-# renv local cache (rebuilt inside the container via renv::restore)
-renv/library/
-renv/python/
-renv/sandbox/
-renv/staging/
